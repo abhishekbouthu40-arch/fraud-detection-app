@@ -1,4 +1,9 @@
+from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+from app.schemas import InputData
+from app.model import predict_fraud
+
+app = FastAPI()
 
 @app.post("/predict")
 def predict(data: InputData):
@@ -11,11 +16,9 @@ def predict(data: InputData):
             data.time_step
         ]
 
-        prediction = model.predict([features])[0]
+        result = predict_fraud(features)
 
-        return {
-            "fraud": int(prediction)
-        }
+        return {"fraud": int(result)}
 
     except Exception as e:
         return JSONResponse(
