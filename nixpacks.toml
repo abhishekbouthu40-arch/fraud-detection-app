@@ -1,0 +1,13 @@
+# Nixpacks config for Render/Railway
+[phases.setup]
+nixPkgs = ["python311"]
+
+[phases.install]
+cmds = [
+  "pip install -r requirements.txt",
+  "python data/generate_dataset.py",
+  "python train.py"
+]
+
+[start]
+cmd = "gunicorn app.main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT"

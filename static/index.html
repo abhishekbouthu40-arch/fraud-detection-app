@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection | Payment Security</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">⟡</span>
+                <h1>Fraud Shield</h1>
+            </div>
+            <p class="tagline">Real-time payment fraud detection</p>
+        </header>
+
+        <main class="main">
+            <form id="fraudForm" class="form">
+                <div class="form-group">
+                    <label for="amount">Amount ($)</label>
+                    <input type="number" id="amount" name="amount" step="0.01" min="0" placeholder="e.g. 1500.00" required>
+                </div>
+                <div class="form-group">
+                    <label for="type">Transaction Type</label>
+                    <select id="type" name="type" required>
+                        <option value="">Select type...</option>
+                        <option value="PAYMENT">Payment</option>
+                        <option value="TRANSFER">Transfer</option>
+                        <option value="CASH_OUT">Cash Out</option>
+                        <option value="CASH_IN">Cash In</option>
+                        <option value="DEBIT">Debit</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="old_balance">Old Balance ($)</label>
+                    <input type="number" id="old_balance" name="old_balance" step="0.01" min="0" placeholder="e.g. 5000.00" required>
+                </div>
+                <div class="form-group">
+                    <label for="new_balance">New Balance ($)</label>
+                    <input type="number" id="new_balance" name="new_balance" step="0.01" min="0" placeholder="e.g. 3500.00" required>
+                </div>
+                <div class="form-group">
+                    <label for="step">Time Step (1-744)</label>
+                    <input type="number" id="step" name="step" min="1" max="744" placeholder="e.g. 120" required>
+                </div>
+                <button type="submit" id="submitBtn" class="btn-check">Check for Fraud</button>
+            </form>
+
+            <div id="result" class="result hidden">
+                <div class="result-card" id="resultCard">
+                    <span class="result-icon" id="resultIcon"></span>
+                    <h2 id="resultLabel">—</h2>
+                    <p class="confidence" id="confidence">Confidence: —</p>
+                </div>
+            </div>
+
+            <div id="error" class="error hidden">
+                <p id="errorMessage"></p>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Powered by Random Forest ML • Built for production</p>
+        </footer>
+    </div>
+    <script src="/static/app.js"></script>
+</body>
+</html>
